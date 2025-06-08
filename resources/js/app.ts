@@ -1,12 +1,14 @@
 import '../css/app.css';
 
-import { createInertiaApp } from '@inertiajs/vue3';
+import { createInertiaApp, Head } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
-
+import Vue3Toastify, { type ToastContainerOptions } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+import { Link } from 'lucide-vue-next';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -15,6 +17,11 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+              .use(Vue3Toastify, {
+            autoClose: 3000,
+            } as ToastContainerOptions)
+            .component('Head', Head)
+            .component('Link', Link)
             .use(ZiggyVue)
             .mount(el);
     },
