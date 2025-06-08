@@ -18,7 +18,7 @@ class LeaveFactory extends Factory
     {
         return [
             'description' => $this->faker->sentence(),
-            'leave_date' => $this->faker->dateBetween('today', '+1 month'),
+            'leave_date' => $this->faker->dateTimeBetween('today', '+1 month')->format('Y-m-d'),
             'is_approved' => $this->faker->boolean(50), // 50% chance of being approved
         ];
     }
