@@ -16,8 +16,8 @@ Route::get('dashboard', function () {
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['can:admin'])->prefix('/admin')->group(function () {
-        Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
+    Route::middleware(['can:admin'])->prefix('/admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
         Route::resource('leaves', LeaveController::class);
     });
 });
