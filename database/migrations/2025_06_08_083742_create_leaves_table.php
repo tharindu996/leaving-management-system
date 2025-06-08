@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
+            $table->text('description');            
+            $table->date('leave_date');            
+            $table->boolean('is_approved')->default(false);            
             $table->timestamps();
         });
     }
