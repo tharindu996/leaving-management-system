@@ -6,10 +6,6 @@ use App\Http\Controllers\LeaveController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
-
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -18,7 +14,8 @@ Route::get('dashboard', function () {
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['can:admin'])->prefix('/admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
-        Route::resource('leaves', LeaveController::class);
+        Route::patch('/approve-leave/{leave}', [AdminDashboardController::class, 'approveLeave'])->name('approve-leave');
+        Route::resource('leaves', AdminLeaveController::class)->only(['index', 'show']);
     });
 });
 
