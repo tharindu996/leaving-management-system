@@ -6,12 +6,8 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeaveController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-
-
 
 Route::middleware(['auth'])->group(function () {
-
     Route::middleware(['can:employee'])->prefix('/employee')->name('employee.')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
         Route::resource('leaves', LeaveController::class)->only(['index', 'store', 'show']);
