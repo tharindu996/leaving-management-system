@@ -32,7 +32,7 @@
 1. **Clone the repository:**
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/tharindu996/leaving-management-system.git
 cd leaving-management
 ```
 
@@ -139,7 +139,7 @@ password: password
 - My name is **Tharindu Dissanayake**. I am a experienced Laravel developer. If you have any questions, feel free to reach out to me:
 
 * **Email:** tharindudissanayake03@gmail.com
-* **GitHub:** [Your GitHub Profile](https://github.com/your-username)
+* **GitHub:** https://github.com/tharindu996
 
 
 ## License
