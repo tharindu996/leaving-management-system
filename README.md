@@ -91,7 +91,12 @@ The application should now be accessible at `http://127.0.0.1:8000`.
 
 #### Steps
 
-1. Register as an employee
+1. You can log into the system by providing employee credentials below.
+
+```bash
+email: employee1@example.com
+password: password
+```
 2. Click on Leaves tab on sidebar
 3. Send a leave request by filling the form.
 4. View leave requests details under the same page.
