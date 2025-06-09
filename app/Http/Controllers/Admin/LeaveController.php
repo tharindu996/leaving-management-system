@@ -30,6 +30,7 @@ class LeaveController extends Controller
      */
     public function approveLeave(Request $request, Leave $leave)
     {
+       
         if ($leave->leave_date < now()) {
             return redirect()->route('admin.leaves.index')->with('error', 'Cannot approve leave for past dates.');
         }
@@ -37,6 +38,8 @@ class LeaveController extends Controller
         $leave->update([
             'status' => 'approved',
         ]);
+
+
         return redirect()->route('admin.leaves.index')->with('success', 'Leave status updated successfully.');
     }
 

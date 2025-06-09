@@ -17,7 +17,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
         Route::patch('/approve-leave/{leave}', [AdminLeaveController::class, 'approveLeave'])->name('leaves.approve-leave');
         Route::patch('/reject-leave/{leave}', [AdminLeaveController::class, 'rejectLeave'])->name('leaves.reject-leave');
-        Route::resource('leaves', AdminLeaveController::class)->only(['index', 'show',]);
+        Route::resource('leaves', AdminLeaveController::class)->only(['index', 'show',])->parameters([
+            'leaves' => 'leave'
+        ]);
         Route::resource('users', AdminUserController::class)->only(['index']);
     });
 });
