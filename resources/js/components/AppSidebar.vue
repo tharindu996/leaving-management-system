@@ -7,6 +7,11 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid, FileClock } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import { type User } from '@/types';
+import { usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+const user = page.props.auth.user as User;
 
 const mainNavItems: NavItem[] = [
     {
@@ -19,6 +24,19 @@ const mainNavItems: NavItem[] = [
         href: '/admin/leaves',
         icon: FileClock,
     },
+];
+
+const mainAdminNavItems: NavItem[] = [
+    {
+        title: 'Dashboard',
+        href: '/admin/dashboard',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Leaves',
+        href: '/admin/leaves',
+        icon: FileClock,
+    },   
 ];
 
 const footerNavItems: NavItem[] = [
@@ -41,7 +59,7 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" />
+            <NavMain :items="user.role === 'admin' ? mainAdminNavItems : mainNavItems" />
         </SidebarContent>
 
         <SidebarFooter>
