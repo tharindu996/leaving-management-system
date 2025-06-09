@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->text('description');            
             $table->date('leave_date');            
-            $table->boolean('is_approved')->default(false);            
+            $table->string('status')->default('pending'); 
             $table->timestamps();
         });
     }

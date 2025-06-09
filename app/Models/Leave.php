@@ -14,12 +14,11 @@ class Leave extends Model
     protected $fillable = [
         'description',
         'leave_date',
-        'is_approved',
+        'status',
     ];
 
     protected $casts = [
-        'leave_date' => 'date:Y-m-d',
-        'is_approved' => 'boolean',
+        'leave_date' => 'date:Y-m-d',      
     ];
 
     public function user(): BelongsTo
