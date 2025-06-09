@@ -32,7 +32,7 @@ class LeaveController extends Controller
     public function store(LeaveStoreRequest $request)
     {
         $inputs = $request->validated();
-        $inputs['user_id'] = auth()->id();
+        $inputs['user_id'] = auth()->user()->id;       
         $leave = Leave::create($inputs);
         return redirect()->route('employee.leaves.index')->with('success', 'Leave request submitted successfully.');
     }
@@ -40,9 +40,11 @@ class LeaveController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(LeaveUpdateRequest $request, Leave $leave)
-    {
-        $inputs = $request->validated();
+    public function update(LeaveUpdateRequest $request, $leave)
+    {        
+        $leave = Leave::findOrFail($leave);
+        $inputs = $request->validated();  
+            
         $leave->update([
             'leave_date'=> $inputs['leave_date'],
             'description' => $inputs['description'],
@@ -56,7 +58,8 @@ class LeaveController extends Controller
      */
     public function destroy(Leave $leave)
     {
+        dd($leave);
         $leave->delete();
-        return redirect()->route('employee.leaves.index')->with('success', 'Leave request deleted successfully.');
+        return redirect()->back()->with('success', 'Leave request deleted successfully.');
     }
 }

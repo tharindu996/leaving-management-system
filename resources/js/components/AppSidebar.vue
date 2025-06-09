@@ -16,12 +16,12 @@ const user = page.props.auth.user as User;
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
-        href: '/empolyee/dashboard',
+        href: route('employee.dashboard'),
         icon: LayoutGrid,
     },
     {
         title: 'Leaves',
-        href: '/empolyee/leaves',
+        href: route('employee.leaves.index'),
         icon: FileClock,
     },
 ];
