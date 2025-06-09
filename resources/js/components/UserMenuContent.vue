@@ -22,15 +22,7 @@ defineProps<Props>();
             <UserInfo :user="user" :show-email="true" />
         </div>
     </DropdownMenuLabel>
-    <DropdownMenuSeparator />
-    <DropdownMenuGroup>
-        <DropdownMenuItem :as-child="true">
-            <Link class="block w-full" :href="route('profile.edit')" prefetch as="button">
-                <Settings class="mr-2 h-4 w-4" />
-                Settings
-            </Link>
-        </DropdownMenuItem>
-    </DropdownMenuGroup>
+    <DropdownMenuSeparator />    
     <DropdownMenuSeparator />
     <DropdownMenuItem :as-child="true">
         <Link class="block w-full" method="post" :href="route('logout')" @click="handleLogout" as="button">
