@@ -9,6 +9,15 @@ class DashboardController extends Controller
      */
     public function dashboard()
     {
-        return inertia('Dashboard');
+        $totalLeaves = auth()->user()->leaves->count();
+        $approvedLeaves = auth()->user()->leaves->where('status', 'approved')->count();
+        $pendingLeaves = auth()->user()->leaves->where('status', 'pending')->count();
+        $rejectedLeaves = auth()->user()->leaves->where('status', 'rejected')->count();
+        return inertia('Dashboard', compact(
+            'totalLeaves',
+            'approvedLeaves',
+            'pendingLeaves',
+            'rejectedLeaves'
+        ));
     }
 }
