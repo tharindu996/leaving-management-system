@@ -135,7 +135,15 @@ password: password
 /leaves ----------------------------------- index,post,update
 ```
 
+## Contact
+- My name is **Tharindu Dissanayake**. I am a experienced Laravel developer. If you have any questions, feel free to reach out to me:
+
+* **Email:** tharindudissanayake03@gmail.com
+* **GitHub:** [Your GitHub Profile](https://github.com/your-username)
 
 
+## License
+
+This project is open-sourced software licensed under the [MIT License](LICENSE.md).
 
 
