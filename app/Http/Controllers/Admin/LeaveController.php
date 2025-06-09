@@ -14,7 +14,6 @@ class LeaveController extends Controller
     public function index()
     {
         $leaves = Leave::with('user')->get();
-
         return inertia('Admin/Leaves/Index', compact('leaves'));
     }
 
@@ -31,6 +30,11 @@ class LeaveController extends Controller
      */
     public function approveLeave(Request $request, Leave $leave)
     {      
+        if($leave->leave_date < now()) {
+            return redirect()->route('admin.leaves.index')->with('error', 'Cannot approve leave for past dates.');
+
+        }
+        
         $leave->update([
             'is_approved' => !$leave->is_approved,
         ]);
