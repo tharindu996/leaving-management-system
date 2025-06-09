@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Leave;
 use Illuminate\Http\Request;
 
 class LeaveController extends Controller
@@ -12,7 +13,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::all();
+        $leaves = Leave::with('user')->get();
 
         return inertia('Admin/Leaves/Index', compact('leaves'));
     }
