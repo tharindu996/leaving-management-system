@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['can:employee'])->prefix('/employee')->name('employee.')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-        Route::resource('leaves', LeaveController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+        Route::resource('leaves', LeaveController::class)->only(['index', 'store', 'show', 'update', 'destroy'])->parameters([
+            'leaves' => 'leave'
+        ]);
     });
     Route::middleware(['can:admin'])->prefix('/admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
@@ -26,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
 
 require __DIR__ . '/auth.php';
 
+// Fallback route to handle undefined routes
+// Redirects to the appropriate dashboard based on user role or to login if not authenticated
 Route::fallback(function () {
     if (Auth::check()) {
         $user = Auth::user();

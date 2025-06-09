@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LeaveStoreRequest;
 use App\Http\Requests\LeaveUpdateRequest;
 use App\Models\Leave;
-use Illuminate\Http\Request;
 
 class LeaveController extends Controller
 {
@@ -57,9 +56,8 @@ class LeaveController extends Controller
      * Destroy the specified resource in storage.
      */
     public function destroy(Leave $leave)
-    {
-        dd($leave);
+    {       
         $leave->delete();
-        return redirect()->back()->with('success', 'Leave request deleted successfully.');
+        return redirect()->route('employee.leaves.index')->with('success', 'Leave request deleted successfully.');
     }
 }
