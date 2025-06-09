@@ -18,10 +18,9 @@ class Leave extends Model
     ];
 
     protected $casts = [
-        'leave_date' => 'date',
+        'leave_date' => 'date:Y-m-d',
         'is_approved' => 'boolean',
     ];
-
 
     public function user(): BelongsTo
     {
