@@ -27,13 +27,12 @@ require __DIR__ . '/auth.php';
 
 Route::fallback(function () {
     if (Auth::check()) {
-
         $user = Auth::user();
         if ($user->role === 'admin') {
             return redirect()->route('admin.dashboard');
         } else {
             return redirect()->route('employee.dashboard');
         }
-        return redirect()->route('login');
     }
+    return redirect()->route('login');
 });
