@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LeaveController as AdminLeaveController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Middleware\CheckEmployeePermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +14,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
         Route::resource('leaves', LeaveController::class)->only(['index', 'store', 'show', 'update', 'destroy'])->parameters([
             'leaves' => 'leave'
-        ]);
+        ])->middleware(CheckEmployeePermission::class);
     });
     Route::middleware(['can:admin'])->prefix('/admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
