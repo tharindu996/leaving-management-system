@@ -40,5 +40,5 @@ Route::fallback(function () {
             return redirect()->route('employee.dashboard');
         }
     }
-    return redirect()->route('login');
+    return redirect()->route('login')->with('warning', 'You are not authenticated. Please log in.');
 });
